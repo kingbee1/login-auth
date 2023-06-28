@@ -1,0 +1,54 @@
+{
+  "user": [
+    {
+      "id": "87",
+      "name": "Abiodun Hodonu",
+      "password": "ku",
+      "email": "abiodunhodonu@gmail.com",
+      "number": "+2348089470944",
+      "country": "nigeria",
+      "address": "13, Abimbola Ladipo\nLiberty Estate, Arida.",
+      "gender": "male"
+    },
+    {
+      "id": "barry",
+      "name": "Abiodun Hodonu",
+      "password": "ku34",
+      "email": "",
+      "number": "+2348089470944",
+      "country": "nigeria",
+      "address": "13, Abimbola Ladipo\nLiberty Estate, Arida.",
+      "gender": "male"
+    },
+    {
+      "id": "wee",
+      "name": "johh",
+      "password": "ku34",
+      "email": "yjv@gm",
+      "number": "+2348089470944",
+      "country": "nigeria",
+      "address": "waf strr",
+      "gender": "female"
+    },
+    {
+      "id": "gee",
+      "name": "web emf",
+      "password": "1234",
+      "email": "keh@gmal",
+      "number": "23401",
+      "country": "usa",
+      "address": "12, assd street.",
+      "gender": "male"
+    },
+    {
+      "id": "df",
+      "name": "",
+      "password": "",
+      "email": "",
+      "number": "",
+      "country": "",
+      "address": "",
+      "gender": "male"
+    }
+  ]
+}
