@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const Register = () => {
 
@@ -147,7 +148,7 @@ const Register = () => {
           </div>
           <div className="card-footer">
             <button type="submit" className="btn btn-primary">Register</button>
-            <a className="btn btn-danger ms-2">Back</a>
+            <Link className="btn btn-danger ms-2" to={'/login'}>Back</Link>
           </div>
         </div>
       </form>
