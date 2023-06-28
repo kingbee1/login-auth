@@ -3,7 +3,7 @@
     {
       "id": "87",
       "name": "Abiodun Hodonu",
-      "password": "ku",
+      "password": "fre",
       "email": "abiodunhodonu@gmail.com",
       "number": "+2348089470944",
       "country": "nigeria",
@@ -17,7 +17,7 @@
       "email": "",
       "number": "+2348089470944",
       "country": "nigeria",
-      "address": "13, Abimbola Ladipo\nLiberty Estate, Arida.",
+      "address": "13, Abimbola Ladipo",
       "gender": "male"
     },
     {
@@ -68,6 +68,16 @@
       "number": "sd",
       "country": "",
       "address": "sd",
+      "gender": "male"
+    },
+    {
+      "id": "sss",
+      "name": "well",
+      "password": "11234",
+      "email": "ass@gmail.com",
+      "number": "2340122",
+      "country": "uk",
+      "address": "12, knesfb",
       "gender": "male"
     }
   ]

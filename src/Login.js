@@ -10,6 +10,16 @@ const Login = () => {
     e.preventDefault();
     if(validate()){
     //login implementation
+    fetch("http://localhost:8000/user/"+username).then((res)=>{
+      return res.json();
+    }).then((resp)=> {
+      console.log(resp)
+      if(Object.keys(resp).length === 0) {
+        toast.error('Please enter valid information')
+      }
+    }).catch((err)=>{
+      toast.error('failed to login:' +err.message)
+    })
 
     }
   }
