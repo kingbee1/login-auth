@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
   return (
@@ -9,7 +10,9 @@ const Home = () => {
         libero quis quasi eaque perspiciatis minima 
         dolor harum quia repudiandae corrupti esse tempore et soluta nemo ea nisi vero. Facere minima inventore in nobis.
       </p>
+      <Link className="btn btn-primary ms-3" to={'/login'}>Access Form Page</Link>
     </div>
+    
   )
 }
 
