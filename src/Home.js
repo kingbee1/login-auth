@@ -1,19 +1,33 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    let username = sessionStorage.getItem("username");
+    if(username === '' || username === null) {
+       navigate('/login') 
+    }
+  }, []);
+
   return (
     <div>
-      <h1>Welcome Over Over.</h1>
+      <div className="header">
+        <Link to={"/"}>Home</Link>
+        <Link style={{ float: "right" }} to={"/login"}>
+          Logout
+        </Link>
+      </div>
+      <h1 className="text-center">Welcome Over Over.</h1>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio totam, nulla incidunt architecto at dolorem alias 
-        libero quis quasi eaque perspiciatis minima 
-        dolor harum quia repudiandae corrupti esse tempore et soluta nemo ea nisi vero. Facere minima inventore in nobis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio totam,
+        nulla incidunt architecto at dolorem alias libero quis quasi eaque
+        perspiciatis minima dolor harum quia repudiandae corrupti esse tempore
+        et soluta nemo ea nisi vero. Facere minima inventore in nobis.
       </p>
-      <Link className="btn btn-primary ms-3" to={'/login'}>Access Form Page</Link>
     </div>
-    
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
