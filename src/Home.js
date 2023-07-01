@@ -6,8 +6,8 @@ const Home = () => {
 
   useEffect(() => {
     let username = sessionStorage.getItem("username");
-    if(username === '' || username === null) {
-       navigate('/login') 
+    if (username === null || username === "") {
+      navigate("/login");
     }
   }, []);
 
