@@ -9,7 +9,7 @@ import { ToastContainer } from 'react-toastify';
 function App() {
   return (
     <div className="App">
-      <ToastContainer ></ToastContainer>
+      <ToastContainer></ToastContainer>
       <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home/>}></Route>

@@ -5,12 +5,32 @@ import { toast } from "react-toastify";
 const Login = () => {
   const [username, usernamechange] = useState("");
   const [password, passwordchange] = useState("");
+  const [login, islogin] = useState("");
+
 
   const navigate = useNavigate();
 
+  function clickBtn() {
+    if(username === 'username' && password === 'password') {
+      navigate("/");
+    }
+  }
+
   useEffect(() => {
-    sessionStorage.clear();
+    if(username === 'username' && password === 'password') {
+      navigate("/register");
+    }
+  }, [])
+
+  
+  useEffect(() => {
+    const isLoggedIn = sessionStorage.getItem("loggedIn")
+    if (isLoggedIn == 'true') {
+      navigate("/")
+    }
   }, []);
+
+
 
   const handlelogin = (e) => {
     e.preventDefault();
@@ -29,6 +49,7 @@ const Login = () => {
               toast.success("Success");
               navigate("/");
               sessionStorage.setItem("username", username);
+              sessionStorage.setItem("loggedIn", true);
             } else {
               toast.error("Please enter valid password");
             }
@@ -85,7 +106,11 @@ const Login = () => {
               </div>
             </div>
             <div className="card-footer">
-              <button type="submit" className="btn btn-primary">
+              <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={clickBtn}
+              >
                 Login
               </button>{" "}
               |
