@@ -39,6 +39,15 @@
   padding: 1%;
 }
 
+.header button {
+  float: right;
+}
+
+.header button:hover{
+  color: black;
+  background: white;
+}
+
 a {
   text-decoration: none !important;
   color: white !important;

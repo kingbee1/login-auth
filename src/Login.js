@@ -5,31 +5,22 @@ import { toast } from "react-toastify";
 const Login = () => {
   const [username, usernamechange] = useState("");
   const [password, passwordchange] = useState("");
-  const [login, islogin] = useState("");
-
 
   const navigate = useNavigate();
 
   function clickBtn() {
-    if(username === 'username' && password === 'password') {
-      navigate("/");
+    if (username === "username" && password === "password") {
+      navigate("/"); 
+      console.log(username);
     }
   }
 
   useEffect(() => {
-    if(username === 'username' && password === 'password') {
-      navigate("/register");
-    }
-  }, [])
-
-  
-  useEffect(() => {
-    const isLoggedIn = sessionStorage.getItem("loggedIn")
-    if (isLoggedIn == 'true') {
-      navigate("/")
+    const isLoggedIn = sessionStorage.getItem("loggedIn");
+    if (isLoggedIn === "true") {
+      navigate("/");
     }
   }, []);
-
 
 
   const handlelogin = (e) => {
@@ -50,6 +41,7 @@ const Login = () => {
               navigate("/");
               sessionStorage.setItem("username", username);
               sessionStorage.setItem("loggedIn", true);
+            
             } else {
               toast.error("Please enter valid password");
             }
