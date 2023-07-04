@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -36,10 +36,9 @@ const Login = () => {
           //this converts (res)ponse to a json format
           return res.json();
         })
-        //.then accepts the json format as resp and then passes as it is to console.log 
-        //do i gotta keep the console logged though? why?
+        //.then accepts the json format as resp. 
         .then((resp) => {
-          console.log(resp);
+          //console.log(resp); check later maybe.
           //if the resp(onse) lenght is empty, toast error msg.
           if (Object.keys(resp).length === 0) {
             toast.error("Please enter valid username");

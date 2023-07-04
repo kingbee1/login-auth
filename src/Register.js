@@ -18,6 +18,7 @@ const Register = () => {
 
   //validates the information provided to create account.
   const IsValidate = () => {
+    //isproceed and error message initialised with true and kpy respectively.
     let isproceed = true;
     let errormessage = "Kindly put your ";
     if (id === null || id === "") {
@@ -42,33 +43,40 @@ const Register = () => {
     if (!isproceed) {
       toast.warning(errormessage);
     } else {
+      //if all ain't empty, regEx is used to confirm email matches this particular pattern.
       if (/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email)) {
       } else {
+        //if it doesn't match the pattern, toast warning message.
         isproceed = false;
         toast.warning("please enter a valid email address");
       }
     }
-
+    //the function returns isproceed. it could be ture or flase as seen above.
     return isproceed;
   };
 
   const handlesubmit = (e) => {
-    //prevents the natural form submission behavior which leads to reloading page
-    
+    //prevents the natural form submission behavior which leads to reloading page.
     e.preventDefault();
+    //declared an object containing the reg details required.
     let reg = { id, name, password, email, number, country, address, gender };
+   //isValidate validates the data in reg. if it returns true, it fires the fetch.
     if (IsValidate()) {
       //console.log(reg);
       //walk through maybe. BRB.
+      //Fetch here sends an http POST api endpoint/user
       fetch("http://localhost:8000/user", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(reg),
       })
+      //when the fetch returns its promise in form of (res) successfully,
+      //then, toast reg complete and go to login page.
         .then((res) => {
           toast.success("Resgistration Complete");
           navigate("/login");
         })
+        //if the whole process fails or there's an error during the request, toast error message +the one from server.
         .catch((err) => {
           toast.error("Failed :" + err.message);
         });
