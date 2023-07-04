@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
 const Register = () => {
-  //define states with empty initial strings and the one that updates the state (you put).
+  //define states with empty initial strings and returns an array with two elements.
   const [id, idchange] = useState("");
   const [name, namechange] = useState("");
   const [password, passwordchange] = useState("");
