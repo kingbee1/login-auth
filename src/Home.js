@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 
+
 const Home = () => {
   const navigate = useNavigate();
 
@@ -12,20 +13,25 @@ const Home = () => {
       }
     }, []);
 
+    //to display whoever is logged in at the moment
+  let naming = sessionStorage.getItem("username")
+//     console.log(naming)
+
+
 
   function logout() {
     sessionStorage.clear();
-    console.log(logout)
     navigate("/login")
   }
-
+  
   return (
     <div>
       <div className="header">
         <Link to={"/"}>Home</Link>
         <button onClick={logout} className="btn btn-danger">Logout</button>
       </div>
-      <h1 className="text-center">Welcome {"Bee"}.</h1>
+      <h1 className="text-center text-capitalize">welcome {naming}</h1>
+
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio totam,
         nulla incidunt architecto at dolorem alias libero quis quasi eaque

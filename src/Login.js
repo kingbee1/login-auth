@@ -8,16 +8,9 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  function clickBtn() {
-    if (username === "username" && password === "password") {
-      navigate("/"); 
-      console.log(username);
-    }
-  }
-
   useEffect(() => {
-    const isLoggedIn = sessionStorage.getItem("loggedIn");
-    if (isLoggedIn === "true") {
+    const isLoggedIn = sessionStorage.getItem("username");
+    if (isLoggedIn) {
       navigate("/");
     }
   }, []);
@@ -40,8 +33,7 @@ const Login = () => {
               toast.success("Success");
               navigate("/");
               sessionStorage.setItem("username", username);
-              sessionStorage.setItem("loggedIn", true);
-            
+              
             } else {
               toast.error("Please enter valid password");
             }
@@ -53,6 +45,7 @@ const Login = () => {
     }
   };
 
+  
   const validate = () => {
     let result = true;
     if (username === "" || username === null) {
@@ -101,7 +94,6 @@ const Login = () => {
               <button
                 type="submit"
                 className="btn btn-primary"
-                onClick={clickBtn}
               >
                 Login
               </button>{" "}
