@@ -3,49 +3,69 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Login = () => {
+  //username variable is declared and initiliased with empty strings
+  //_change updates the value of the initial state "username"
+  //reason when we e.target the value in input, it allows the new state
+  //which is the username and password inputed to be displayed on the UI. 
   const [username, usernamechange] = useState("");
   const [password, passwordchange] = useState("");
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const isLoggedIn = sessionStorage.getItem("username");
-    if (isLoggedIn) {
-      navigate("/");
-    }
-  }, []);
+//onload, actually does nothing. take out. 
+  // useEffect(() => {
+  //   const isLoggedIn = sessionStorage.getItem("username");
+  //   if (isLoggedIn) {
+  //     navigate("/");
+  //     console.log(isLoggedIn)
+  //   }
+  // }, []);
 
 
+  //handles the login process.
   const handlelogin = (e) => {
     e.preventDefault();
+    //if the validate function is completed, it fetches data from the db.json
+    //to implement login. need a walk through still.
     if (validate()) {
       //login implementation
+      //i used Fetch API to send an HTTP request to my api endpoint(http://localhost:8000/user/) and handle the response.
+      //passed the username by concating to endpoint api so the eresult is specific to whomever signs in as in welcome {naming}.
       fetch("http://localhost:8000/user/" + username)
         .then((res) => {
+          //this converts (res)ponse to a json format
           return res.json();
         })
+        //.then accepts the json format as resp and then passes as it is to console.log 
+        //do i gotta keep the console logged though? why?
         .then((resp) => {
           console.log(resp);
+          //if the resp(onse) lenght is empty, toast error msg.
           if (Object.keys(resp).length === 0) {
             toast.error("Please enter valid username");
           } else {
+            //if the resp(onse) isn't empty, then confirm if logged password matches p.value
+            //toast success and take me home.
             if (resp.password === password) {
               toast.success("Success");
               navigate("/");
+              //the "username" value is then stored is sessionstorage.
               sessionStorage.setItem("username", username);
               
             } else {
+              //toast error msg if password don't match
               toast.error("Please enter valid password");
             }
           }
         })
+        //if there's and error in this fetch proccess ish, toast error msg.
         .catch((err) => {
           toast.error("failed to login:" + err.message);
         });
     }
   };
 
-  
+  //authenticates username and password.
   const validate = () => {
     let result = true;
     if (username === "" || username === null) {

@@ -1,34 +1,34 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-
-
 const Home = () => {
   const navigate = useNavigate();
 
-    useEffect(() => {
-      let username = sessionStorage.getItem("username");
-      if (username === null || username === "") {
-        navigate("/login");
-      }
-    }, []);
+  //if there's no username inputed on load, it goes to login page.
+  useEffect(() => {
+    let username = sessionStorage.getItem("username");
+    if (username === null || username === "") {
+      navigate("/login");
+    }
+  }, []);
 
-    //to display whoever is logged in at the moment
-  let naming = sessionStorage.getItem("username")
-//     console.log(naming)
+  //to display whoever is logged in at the moment.
+  let naming = sessionStorage.getItem("username");
+  //     console.log(naming)
 
-
-
+  //logs user out, clears storage and goes to login page.
   function logout() {
     sessionStorage.clear();
-    navigate("/login")
+    navigate("/login");
   }
-  
+
   return (
     <div>
       <div className="header">
         <Link to={"/"}>Home</Link>
-        <button onClick={logout} className="btn btn-danger">Logout</button>
+        <button onClick={logout} className="btn btn-danger">
+          Logout
+        </button>
       </div>
       <h1 className="text-center text-capitalize">welcome {naming}</h1>
 
