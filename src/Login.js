@@ -6,23 +6,11 @@ const Login = () => {
   //state variable is declared and initiliased with empty strings useState("").
   //usestae returns two array with two elements: 
   //1. the current state value (username|password) 
-  //2. function to update that value (usernamechange|pchange). 
-  //reason when we e.target the value in input, it allows the new state
-  //which is the usernamechange and passwordchange inputed to be displayed on the UI. 
+  //2. function to update that value (usernamechange|passwordchange). 
   const [username, usernamechange] = useState("");
   const [password, passwordchange] = useState("");
 
   const navigate = useNavigate();
-
-//onload, actually does nothing. take out. 
-  // useEffect(() => {
-  //   const isLoggedIn = sessionStorage.getItem("username");
-  //   if (isLoggedIn) {
-  //     navigate("/");
-  //     console.log(isLoggedIn)
-  //   }
-  // }, []);
-
 
   //handles the login submit process.
   //handlelogin function takes an event as an arg
@@ -32,7 +20,8 @@ const Login = () => {
     //to implement login. need a walk through still.
     if (validate()) {
       //login implementation
-      //used Fetch API to send a GET HTTP request to an api endpoint(http://localhost:8000/user/) and handle the response.
+      //used Fetch API to send a GET HTTP request to an api endpoint(http://localhost:8000/user/ which was provided by json server)- https://www.npmjs.com/package/json-server
+      //and handle the response.
       //passed the username by concating to endpoint api so the eresult is specific to whomever signs in as in welcome {naming}.
       fetch("http://localhost:8000/user/" + username)
       //.then parses the response body as JSON by calling res.json()
@@ -42,18 +31,18 @@ const Login = () => {
         })
         //.then contains the json format as resp. 
         .then((resp) => {
-          //console.log(resp); check later maybe.
-          //if the resp(onse) lenght is empty(if number of keys in resp obj = 0), toast error msg.
-          if (Object.keys(resp).length === 0) {
+          //if the resp(onse) length is empty(if number of keys in resp obj = 0), toast error msg.
+          //toast error if response is empty.
+          if (!Object.keys(resp).length) {
             toast.error("Please enter valid username");
           } else {
             //if the resp(onse) isn't empty, then confirm if logged password matches p.value
             //toast success and take me home.
             if (resp.password === password) {
-              toast.success("Success");
-              navigate("/");
               //the "username" value is then stored(set) is sessionstorage.
               sessionStorage.setItem("username", username);
+              toast.success("Success");
+              navigate("/");
               
             } else {
               //toast error msg if password don't match
@@ -68,16 +57,17 @@ const Login = () => {
     }
   };
 
+
   //authenticates username and password.
   const validate = () => {
     let result = true;
     //if username is empty, it returns false and toasts warning msg.
-    if (username === "" || username === null) {
+    if (!username) {
       result = false;
       toast.warning("Please Enter Username");
     }
     //same with username
-    if (password === "" || password === null) {
+    if (!password) {
       result = false;
       toast.warning("put you Password");
     }
